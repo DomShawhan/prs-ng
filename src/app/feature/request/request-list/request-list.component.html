@@ -1,0 +1,46 @@
+<section class="heading">
+    <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
+    <a routerLink="/request/create">
+        <img width="20" height="20" src="assets/add-icon.png" title="Add New" />
+    </a>
+</section>
+
+<table *ngIf="requests" class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>User</th>
+            <th>Description</th>
+            <th>Justification</th>
+            <th>Date Needed</th>
+            <th>Delivery Mode</th>
+            <th>Status</th>
+            <th>Total</th>
+            <th>Submitted Date</th>
+            <th>Reason For Rejection</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let request of requests">
+            <td>{{ request.id }}</td>
+            <td>{{ request.user.firstname + ' ' + request.user.lastname }}</td>
+            <td>{{ request.description }}</td>
+            <td>{{ request.justification }}</td>
+            <td>{{ request.dateNeeded }}</td>
+            <td>{{ request.deliveryMode }}</td>
+            <td>{{ request.status }}</td>
+            <td>{{ request.total }}</td>
+            <td>{{ request.submittedDate }}</td>
+            <td>{{ request.reasonForRejection }}</td>
+            <td>
+                <a routerLink="/request/detail/{{ request.id }}">
+                    <img width="20" height="20" src="assets/details.png" title="Request Details" />
+                </a>
+                <a routerLink="/request/edit/{{ request.id }}">
+                    <img width="20" height="20" src="assets/pencil-icon.png" title="Edit Request" />
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

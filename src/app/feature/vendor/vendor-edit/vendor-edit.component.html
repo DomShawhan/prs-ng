@@ -1,61 +1,61 @@
 <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
-<p *ngIf="!user">Loading...</p>
-<div *ngIf="user">
+<p *ngIf="!vendor">Loading...</p>
+<div *ngIf="vendor">
     <main class="single">
         <table class="table table-sm">
             <tbody>
                 <tr>
                     <td>Id:</td>
                     <td>
-                        <input [(ngModel)]="user.id" class="rounded" type="text" disabled />
+                        <input [(ngModel)]="vendor.id" class="rounded" type="text" disabled />
                     </td>
                 </tr>
                 <tr>
-                    <td>Username:</td>
+                    <td>Code:</td>
                     <td>
-                        <input [(ngModel)]="user.username" class="rounded" type="text" disabled />
+                        <input [(ngModel)]="vendor.code" class="rounded" type="text" />
                     </td>
                 </tr>
                 <tr>
-                    <td>Password:</td>
+                    <td>Name:</td>
                     <td>
-                        <input [(ngModel)]="user.password" class="rounded" type="password" />
+                        <input [(ngModel)]="vendor.name" class="rounded" type="text" />
                     </td>
                 </tr>
                 <tr>
-                    <td>First name:</td>
+                    <td>Address:</td>
                     <td>
-                        <input [(ngModel)]="user.firstname" class="rounded" type="text" />
+                        <input [(ngModel)]="vendor.address" class="rounded" type="text" />
                     </td>
                 </tr>
                 <tr>
-                    <td>Last name:</td>
+                    <td>City:</td>
                     <td>
-                        <input [(ngModel)]="user.lastname" class="rounded" type="text" />
+                        <input [(ngModel)]="vendor.city" class="rounded" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>State:</td>
+                    <td>
+                        <input [(ngModel)]="vendor.state" class="rounded" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Zip:</td>
+                    <td>
+                        <input [(ngModel)]="vendor.zip" class="rounded" type="text" />
                     </td>
                 </tr>
                 <tr>
                     <td>Phone:</td>
                     <td>
-                        <input [(ngModel)]="user.phone" class="rounded" type="text" />
+                        <input [(ngModel)]="vendor.phone" class="rounded" type="text" />
                     </td>
                 </tr>
                 <tr>
                     <td>Email:</td>
                     <td>
-                        <input [(ngModel)]="user.email" class="rounded" type="email" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Is Reviewer:</td>
-                    <td>
-                        <input [(ngModel)]="user.reviewer" class="rounded" type="checkbox" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Is Admin:</td>
-                    <td>
-                        <input [(ngModel)]="user.admin" class="rounded" type="checkbox" />
+                        <input [(ngModel)]="vendor.email" class="rounded" type="email" />
                     </td>
                 </tr>
             </tbody>

@@ -1,0 +1,44 @@
+<section class="heading">
+    <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
+    <a routerLink="/vendor/create">
+        <img width="20" height="20" src="assets/add-icon.png" title="Add New" />
+    </a>
+</section>
+
+<table *ngIf="vendors" class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let vendor of vendors">
+            <td>{{ vendor.id }}</td>
+            <td>{{ vendor.code }}</td>
+            <td>{{ vendor.name }}</td>
+            <td>{{ vendor.address }}</td>
+            <td>{{ vendor.city }}</td>
+            <td>{{ vendor.state }}</td>
+            <td>{{ vendor.zip }}</td>
+            <td>{{ vendor.phone }}</td>
+            <td>{{ vendor.email }}</td>
+            <td>
+                <a routerLink="/vendor/detail/{{ vendor.id }}">
+                    <img width="20" height="20" src="assets/details.png" title="Vendor Details" />
+                </a>
+                <a routerLink="/vendor/edit/{{ vendor.id }}">
+                    <img width="20" height="20" src="assets/pencil-icon.png" title="Edit Vendor" />
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

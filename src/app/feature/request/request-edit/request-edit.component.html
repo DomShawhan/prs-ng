@@ -1,0 +1,47 @@
+<h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
+<p *ngIf="!request">Loading...</p>
+<div *ngIf="request">
+    <main class="single">
+        <table class="table table-sm">
+            <tbody>
+                <tr>
+                    <td>Id:</td>
+                    <td>
+                        <input [(ngModel)]="request.id" class="rounded" type="text" disabled />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td>
+                        <input [(ngModel)]="request.description" class="rounded" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Justification:</td>
+                    <td>
+                        <input [(ngModel)]="request.justification" class="rounded" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date Needed:</td>
+                    <td>
+                        <input [(ngModel)]="request.dateNeeded" class="rounded" type="date" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Delivery Mode:</td>
+                    <td>
+                        <select [(ngModel)]="request.deliveryMode">
+                            <option value="Pickup">Pickup</option>
+                            <option value="Mail">Mail</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <span>
+        <button (click)="save()" class="btn btn-sm btn-primary">Edit</button>
+    </span>
+    <p *ngIf="message">{{ message }}</p>
+</div>
