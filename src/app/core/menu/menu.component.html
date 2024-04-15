@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand-md">
+    <div class="container-fluid">
+        <a routerLink="/home" class="navbar-brand">
+            <img src="assets/logo.png" alt="Home page logo" >
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <div class="navbar-nav">
+                <a class="nav-link" *ngFor="let mi of menuItems" routerLink="{{mi.href}}" title="{{mi.tooltip}}">{{ mi.display }}</a>
+            </div>
+        </div>
+    </div>
+</nav>
