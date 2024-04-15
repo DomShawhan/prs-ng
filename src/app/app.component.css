@@ -1,0 +1,21 @@
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: -500;
+    background-image: url(../assets/map.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-y: scroll;
+}
+
+* {
+    font-family: MiddleEarth, serif;
+}
+
+.page-title {
+    color: rgb(200, 107, 24);
+    display: inline-block;
+}
