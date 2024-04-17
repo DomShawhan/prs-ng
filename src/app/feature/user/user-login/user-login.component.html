@@ -1,0 +1,28 @@
+<div class="container" id="main-content">
+    <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
+    <p *ngIf="!userLogin">Loading...</p>
+    <div *ngIf="userLogin">
+        <main class="single">
+            <table class="table table-sm">
+                <tbody>
+                    <tr>
+                        <td>Username:</td>
+                        <td>
+                            <input [(ngModel)]="userLogin.username" class="rounded" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td>
+                            <input [(ngModel)]="userLogin.password" class="rounded" type="password" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+        <span>
+            <button (click)="login()" class="btn btn-sm btn-main">Login</button>
+        </span>
+        <p *ngIf="message" class="message">{{ message }}</p>
+    </div>
+</div>

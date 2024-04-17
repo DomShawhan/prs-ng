@@ -30,4 +30,8 @@ export class RequestService {
   deleteRequest(id: number): Observable<boolean> {
     return this.http.delete(URL + '/' + id) as Observable<boolean>;
   }
+
+  reviewRequest(request: Request): Observable<Request> {
+    return this.http.post(URL + '/review/' + request.id, request) as Observable<Request>;
+  }
 }

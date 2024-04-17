@@ -4,6 +4,7 @@ import { User } from '../../../model/user';
 import { RequestService } from '../../../service/request.service';
 import { UserService } from '../../../service/user.service';
 import { Router } from '@angular/router';
+import { SystemService } from '../../../service/system.service';
 
 @Component({
   selector: 'app-request-create',
@@ -18,20 +19,14 @@ export class RequestCreateComponent {
   constructor(
     private requestSvc: RequestService,
     private userSvc: UserService,
-    private router: Router
+    private router: Router,
+    private systemSvc: SystemService
   ){}
   
   ngOnInit(): void {
-    this.userSvc.getUserById(24).subscribe({
-      next: (resp) => {
-        this.request.user = resp;
-      },
-      error: (err) => {
-        console.log("Get user error: ", err);
-        this.message = "Error while getting user";
-      },
-      complete: () => {}
-    })
+    this.systemSvc.checkLogin();
+
+    this.request.user = this.systemSvc.loggedInUser;
   }
 
   save(): void {
@@ -41,8 +36,7 @@ export class RequestCreateComponent {
         this.router.navigateByUrl('/request/list');
       },
       error: (err) => {
-        console.log("Save error: ", err);
-        this.message = "Error while saving";
+        this.message = this.message = err.error.message;;
       },
       complete: () => {}
     });

@@ -35,7 +35,7 @@ export class ProductEditComponent implements OnInit {
         });
       },
       error: (err) => {
-        console.log('Error editing Product: ', err);
+        this.message = err.error.message;
       },
       complete: () => {},
     });
@@ -44,7 +44,7 @@ export class ProductEditComponent implements OnInit {
         this.vendors = resp;
       },
       error: (err) => {
-        console.log('Product Edit - error getting movies.');
+        this.message = err.error.message;
       },
       complete: () => {},
     });
@@ -58,8 +58,7 @@ export class ProductEditComponent implements OnInit {
         this.router.navigateByUrl('/product/list');
       },
       error: (err) => {
-        console.log('Error updating product: ', err);
-        this.message = 'Error updating Product.';
+        this.message = err.error.message;
       },
       complete: () => {},
     });

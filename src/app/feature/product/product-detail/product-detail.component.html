@@ -1,58 +1,61 @@
-<h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
-<p *ngIf="!product">Loading...</p>
-<div *ngIf="product">
-    <main class="single">
-        <table class="table table-sm">
-            <tbody>
-                <tr>
-                    <td>Id: </td>
-                    <td>
-                        <input [(ngModel)]="product.id" class="rounded" type="text" disabled />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Vendor: </td>
-                    <td>
-                        <input [(ngModel)]="product.vendor.name" class="rounded" type="text" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Part Number:</td>
-                    <td>
-                        <input [(ngModel)]="product.partNumber" class="rounded" type="text" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Name:</td>
-                    <td>
-                        <input [(ngModel)]="product.name" class="rounded" type="text" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Price:</td>
-                    <td>
-                        <input [(ngModel)]="product.price" class="rounded" type="number" step=".01" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Unit:</td>
-                    <td>
-                        <input [(ngModel)]="product.unit" class="rounded" type="text" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Photo Path:</td>
-                    <td>
-                        <input [(ngModel)]="product.photoPath" class="rounded" type="text" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </main>
-    <span>
-        <button routerLink="/product/edit/{{ product.id }}" class="btn btn-sm btn-warning"
-            style="margin-right: 10px;">Edit</button>
-        <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button>
-    </span>
-    <p *ngIf="message">{{ message }}</p>
+<app-menu></app-menu>
+<div class="container" id="main-content">
+    <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
+    <p *ngIf="!product">Loading...</p>
+    <div *ngIf="product">
+        <main class="single">
+            <table class="table table-sm">
+                <tbody>
+                    <tr>
+                        <td>Id: </td>
+                        <td>
+                            <input [(ngModel)]="product.id" class="rounded" type="text" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Vendor: </td>
+                        <td>
+                            <input [(ngModel)]="product.vendor.name" class="rounded" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Part Number:</td>
+                        <td>
+                            <input [(ngModel)]="product.partNumber" class="rounded" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Name:</td>
+                        <td>
+                            <input [(ngModel)]="product.name" class="rounded" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Price:</td>
+                        <td>
+                            <input [(ngModel)]="product.price" class="rounded" type="number" step=".01" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Unit:</td>
+                        <td>
+                            <input [(ngModel)]="product.unit" class="rounded" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Photo Path:</td>
+                        <td>
+                            <input [(ngModel)]="product.photoPath" class="rounded" type="text" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+        <span>
+            <button routerLink="/product/edit/{{ product.id }}" class="btn btn-sm btn-warning"
+                style="margin-right: 10px;">Edit</button>
+            <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button>
+        </span>
+        <p *ngIf="message" class="message">{{ message }}</p>
+    </div>
 </div>

@@ -10,6 +10,7 @@ import { ProductService } from '../../../service/product.service';
 export class ProductListComponent implements OnInit {
   title: string = "Product-List";
   products?: Product[] = undefined;
+  message?: string = undefined;
 
   constructor(private productSvc: ProductService) {}
   
@@ -19,7 +20,7 @@ export class ProductListComponent implements OnInit {
         this.products = resp;
       },
       error: (err) => {
-        console.log(err);
+        this.message = err.error.message;
       },
       complete: () => {}
     })

@@ -1,0 +1,65 @@
+<app-menu></app-menu>
+<div class="container" id="main-content">
+    <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
+    <p *ngIf="!request">Loading...</p>
+    <div *ngIf="request">
+        <main class="single">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ request.user.firstname + ' ' + request.user.lastname }}</td>
+                        <td>{{ request.description }}</td>
+                        <td>{{ request.status }}</td>
+                        <td>{{ request.total | currency }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2 class="page-title font-weight-bold font-italic">
+                Line Items
+                <a *ngIf="request.status == 'NEW'" routerLink="/line-item/create/{{ request.id }}">
+                    <img width="20" height="20" src="assets/add-icon.png" title="Add New" />
+                </a>
+            </h2>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Vendor</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Line Total</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let li of lineItems">
+                        <td>{{ li.product.vendor.name }}</td>
+                        <td>{{ li.product.name }}</td>
+                        <td>{{ li.quantity }}</td>
+                        <td>{{ li.product.price | currency }}</td>
+                        <td>{{ li.product.price * li.quantity | currency }}</td>
+                        <td>
+                            <a *ngIf="request.status == 'NEW'" routerLink="/line-item/edit/{{ li.id }}">
+                                <img width="20" height="20" src="assets/pencil-icon.png" title="Edit Line Item" />
+                            </a>
+                            <a *ngIf="request.status == 'NEW'" (click)="delete(li.id)">
+                                <img width="20" height="20" src="assets/delete.jpg" title="Delete Line Item" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+        <span *ngIf="lineItems.length == 0">No line items yet. Please create a new one!</span>
+        <button *ngIf="request.status == 'NEW'" (click)="submit()" class="btn btn-sm btn-main">Submit Request For Review</button>
+        <p *ngIf="message" class="message">{{ message }}</p>
+    </div>
+</div>

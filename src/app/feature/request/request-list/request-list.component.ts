@@ -10,6 +10,7 @@ import { Request } from '../../../model/request';
 export class RequestListComponent {
   title: string = "Request-List";
   requests?: Request[] = undefined;
+  message?: string = undefined
 
   constructor(private requestSvc: RequestService) {}
   
@@ -17,9 +18,10 @@ export class RequestListComponent {
     this.requestSvc.getAllRequests().subscribe({
       next: (resp) => {
         this.requests = resp;
+        this.requests.sort((a, b) => {return +new Date(a.dateNeeded) - +new Date(b.dateNeeded)})
       },
       error: (err) => {
-        console.log(err);
+        this.message = err.error.message;
       },
       complete: () => {}
     })

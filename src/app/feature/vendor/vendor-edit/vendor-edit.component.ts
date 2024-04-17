@@ -28,15 +28,13 @@ export class VendorEditComponent implements OnInit {
             this.vendor = resp;
           },
           error: (err) => {
-            console.log('Get by Id error for id: ' + this.vendorId, err);
-            this.message = 'Get by Id error for id: ' + this.vendorId;
+            this.message = err.error.message;
           },
           complete: () => {}
         });
       },
       error: (err) => {
-        console.log('Get by Id error for id: ' + this.vendorId, err);
-        this.message = 'Get by Id error for id: ' + this.vendorId;
+        this.message = err.error.message;
       },
       complete: () => {}
     });
@@ -49,7 +47,6 @@ export class VendorEditComponent implements OnInit {
         this.router.navigateByUrl('/vendor/list');
       }, 
       error: (err) => {
-        console.log('Update error for id: ' + this.vendorId, err);
         this.message = err.error.message;
       },
       complete: () => {}

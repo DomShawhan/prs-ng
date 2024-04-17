@@ -29,15 +29,13 @@ export class UserDetailComponent implements OnInit {
             this.user = resp;
           },
           error: (err) => {
-            console.log('Get by Id error for id: ' + this.userId, err);
-            this.message = 'Get by Id error for id: ' + this.userId;
+            this.message = err.error.message;
           },
           complete: () => {}
         });
       },
       error: (err) => {
-        console.log('Get by Id error for id: ' + this.userId, err);
-        this.message = 'Get by Id error for id: ' + this.userId;
+        this.message = err.error.message;
       },
       complete: () => {}
     });
@@ -47,15 +45,13 @@ export class UserDetailComponent implements OnInit {
     this.userSvc.deleteUser(this.userId).subscribe({
       next: (resp) => {
         if(resp == false) {
-          console.log('Error deleting user');
           this.message = 'Error deleting user';
         } else {
           this.router.navigateByUrl('/user/list');
         }
       }, 
       error: (err) => {
-        console.log('Error deleting user: ', err);
-        this.message = 'Error deleting user';
+        this.message = err.error.message;
       },
       complete: () => {}
     });

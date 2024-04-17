@@ -1,44 +1,33 @@
-<section class="heading">
-    <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
-    <a routerLink="/user/create">
-        <img width="20" height="20" src="assets/add-icon.png" title="Add New" />
-    </a>
-</section>
+<app-menu></app-menu>
+<div class="container" id="main-content">
+    <section class="heading">
+        <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
+        <a routerLink="/user/create">
+            <img width="20" height="20" src="assets/add-icon.png" title="Add New" />
+        </a>
+    </section>
 
-<table *ngIf="users" class="table table-sm table-striped">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Username</th>
-            <th>Password</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Reviewer</th>
-            <th>Admin</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let user of users">
-            <td>{{ user.id }}</td>
-            <td>{{ user.username }}</td>
-            <td>{{ user.password }}</td>
-            <td>{{ user.firstname }}</td>
-            <td>{{ user.lastname }}</td>
-            <td>{{ user.phone }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.reviewer }}</td>
-            <td>{{ user.admin }}</td>
-            <td>
-                <a routerLink="/user/detail/{{ user.id }}">
-                    <img width="20" height="20" src="assets/details.png" title="User Details" />
-                </a>
-                <a routerLink="/user/edit/{{ user.id }}">
-                    <img width="20" height="20" src="assets/pencil-icon.png" title="Edit User" />
-                </a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <div class="container">
+        <div class="row">
+            <div class="card col-xl-3 col-lg-4 col-md-6" *ngFor="let user of users">
+                <div class="card-body">
+                    <h5 class="card-title">{{ user.firstname }} {{ user.lastname }}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{ user.username }}</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ user.email }}</li>
+                        <li class="list-group-item">{{ user.phone }}</li>
+                        <li class="list-group-item" *ngIf="user.reviewer">Reviewer</li>
+                        <li class="list-group-item" *ngIf="user.admin">Admin</li>
+                    </ul>
+                    <a routerLink="/user/detail/{{ user.id }}">
+                        <img width="20" height="20" src="assets/details.png" title="User Details" />
+                    </a>
+                    <a routerLink="/user/edit/{{ user.id }}">
+                        <img width="20" height="20" src="assets/pencil-icon.png" title="Edit User" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p *ngIf="message" class="message">{{ message }}</p>
+    </div>
+</div>

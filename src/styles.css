@@ -1,7 +1,7 @@
 body {
-    background-image: url(./assets/map.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: url(./assets/map.jpg) top left no-repeat;
+	background-size: 100%;
+    background-attachment: fixed;
 }
 
 * {
@@ -9,14 +9,17 @@ body {
 }
 
 .page-title {
-    color: white;
+	padding: 5px;
+    color: rgb(200, 107, 24);
     display: inline-block;
+	font-family: Ringbearer, Tahoma, serif;
 }
 
 nav {
 	background-color: rgb(71, 91, 29);
 	padding: 5px 0;
 	height: 55px;
+	z-index: 1000;
 }
 
 ul {
@@ -40,4 +43,20 @@ li {
 .nav-link:hover {
     color: white;
 	background-color: rgb(53, 68, 22);
+}
+
+#main-content {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+}
+
+.btn-main {
+	background-color: rgb(71, 91, 29);
+	color: rgb(185, 162, 122);
+}
+
+.btn-main:hover {
+	background-color: rgb(50, 71, 9);
+	color: rgb(185, 162, 122);
 }

@@ -30,13 +30,13 @@ export class RequestDetailComponent implements OnInit {
             this.request = parms;
           },
           error: (err) => {
-            console.log('Error editing Request: ', err);
+            this.message = err.error.message;
           },
           complete: () => {},
         });
       },
       error: (err) => {
-        console.log('Error editing Request: ', err);
+        this.message = err.error.message;
       },
       complete: () => {}
     });
@@ -52,7 +52,6 @@ export class RequestDetailComponent implements OnInit {
         }
       },
       error: (err) => {
-        console.log('Error editing Request: ', err);
         this.message = err.error.message;
       },
       complete: () => {}

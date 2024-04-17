@@ -10,6 +10,7 @@ import { Vendor } from '../../../model/vendor';
 export class VendorListComponent implements OnInit{
   title: string = "Vendor-List";
   vendors?: Vendor[] = undefined;
+  message?: string = undefined;
 
   constructor(private vendorSvc: VendorService) {}
   
@@ -19,7 +20,7 @@ export class VendorListComponent implements OnInit{
         this.vendors = resp;
       },
       error: (err) => {
-        console.log(err);
+        this.message = err.error.message;
       },
       complete: () => {}
     })

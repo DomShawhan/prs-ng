@@ -28,8 +28,7 @@ export class ProductCreateComponent implements OnInit {
         this.vendors = resp;
       },
       error: (err) => {
-        console.log("Get Vendors error: ", err);
-        this.message = "Error while getting vendors";
+        this.message = err.error.message;
       },
       complete: () => {}
     });
@@ -42,8 +41,7 @@ export class ProductCreateComponent implements OnInit {
         this.router.navigateByUrl('/product/list');
       },
       error: (err) => {
-        console.log("Save error: ", err);
-        this.message = "Error while saving";
+        this.message = err.error.message;
       },
       complete: () => {}
     });

@@ -30,13 +30,13 @@ export class ProductDetailComponent implements OnInit {
             this.product = parms;
           },
           error: (err) => {
-            console.log('Error editing Product: ', err);
+            this.message = err.error.message;
           },
           complete: () => {},
         });
       },
       error: (err) => {
-        console.log('Error editing Product: ', err);
+        this.message = err.error.message;
       },
       complete: () => {}
     });
@@ -52,7 +52,6 @@ export class ProductDetailComponent implements OnInit {
         }
       },
       error: (err) => {
-        console.log('Error editing Product: ', err);
         this.message = err.error.message;
       },
       complete: () => {}

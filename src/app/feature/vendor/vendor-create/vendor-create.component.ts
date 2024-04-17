@@ -28,8 +28,7 @@ export class VendorCreateComponent implements OnInit {
         this.router.navigateByUrl('/vendor/list');
       },
       error: (err) => {
-        console.log("Save error: ", err);
-        this.message = "Error while saving";
+        this.message = err.error.message;
       },
       complete: () => {}
     });

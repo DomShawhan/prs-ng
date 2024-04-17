@@ -29,15 +29,13 @@ export class VendorDetailComponent implements OnInit {
             this.vendor = resp;
           },
           error: (err) => {
-            console.log('Get by Id error for id: ' + this.vendorId, err);
-            this.message = 'Get by Id error for id: ' + this.vendorId;
+            this.message = err.error.message;
           },
           complete: () => {}
         });
       },
       error: (err) => {
-        console.log('Get by Id error for id: ' + this.vendorId, err);
-        this.message = 'Get by Id error for id: ' + this.vendorId;
+        this.message = err.error.message;
       },
       complete: () => {}
     });
@@ -47,15 +45,13 @@ export class VendorDetailComponent implements OnInit {
     this.vendorSvc.deleteVendor(this.vendorId).subscribe({
       next: (resp) => {
         if(resp == false) {
-          console.log('Error deleting vendor');
           this.message = 'Error deleting vendor';
         } else {
           this.router.navigateByUrl('/vendor/list');
         }
       }, 
       error: (err) => {
-        console.log('Error deleting vendor: ', err);
-        this.message = 'Error deleting vendor';
+        this.message = err.error.message;
       },
       complete: () => {}
     });

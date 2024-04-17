@@ -11,5 +11,9 @@
                 <a class="nav-link" *ngFor="let mi of menuItems" routerLink="{{mi.href}}" title="{{mi.tooltip}}">{{ mi.display }}</a>
             </div>
         </div>
+        <div class="navbar-nav ml-auto" >
+            <a *ngIf="loggedInUser" class="nav-link"routerLink="/user/edit/{{ loggedInUser.id }}" title="Edit Logged In user">{{ loggedInUser.firstname }} {{ loggedInUser.lastname }}</a>
+            <a class="nav-link"routerLink="/user/login" title="{{ loggedInUser ? 'Logout': 'Login' }}">{{ loggedInUser ? 'Logout': 'Login' }}</a>
+        </div>
     </div>
 </nav>

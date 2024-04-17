@@ -28,8 +28,7 @@ export class UserCreateComponent implements OnInit {
         this.router.navigateByUrl('/user/list');
       },
       error: (err) => {
-        console.log("Save error: ", err);
-        this.message = "Error while saving";
+        this.message = err.error.message;
       },
       complete: () => {}
     });

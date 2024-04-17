@@ -10,6 +10,7 @@ import { UserService } from '../../../service/user.service';
 export class UserListComponent implements OnInit {
   title: string = "User-List";
   users?: User[] = undefined;
+  message?: string = undefined;
 
   constructor(private userSvc: UserService) {}
   
@@ -19,7 +20,7 @@ export class UserListComponent implements OnInit {
         this.users = resp;
       },
       error: (err) => {
-        console.log(err);
+        this.message = err.error.message;
       },
       complete: () => {}
     })

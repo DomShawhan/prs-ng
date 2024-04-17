@@ -1,40 +1,32 @@
-<section class="heading">
-    <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
-    <a routerLink="/product/create">
-        <img width="20" height="20" src="assets/add-icon.png" title="Add New" />
-    </a>
-</section>
+<app-menu></app-menu>
+<div class="container" id="main-content">
+    <section class="heading">
+        <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
+        <a routerLink="/product/create">
+            <img width="20" height="20" src="assets/add-icon.png" title="Add New" />
+        </a>
+    </section>
 
-<table *ngIf="products" class="table table-sm table-striped">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Vendor Name</th>
-            <th>Part Number</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Unit</th>
-            <th>Photo Path</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let product of products">
-            <td>{{ product.id }}</td>
-            <td>{{ product.vendor.name }}</td>
-            <td>{{ product.partNumber }}</td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.price }}</td>
-            <td>{{ product.unit }}</td>
-            <td>{{ product.photoPath }}</td>
-            <td>
-                <a routerLink="/product/detail/{{ product.id }}">
-                    <img width="20" height="20" src="assets/details.png" title="Product Details" />
-                </a>
-                <a routerLink="/product/edit/{{ product.id }}">
-                    <img width="20" height="20" src="assets/pencil-icon.png" title="Edit Product" />
-                </a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <div class="container">
+        <div class="row">
+            <div class="card col-xl-3 col-lg-4 col-md-6" *ngFor="let product of products">
+                <img src="../../../../assets/productImages/{{ product.photoPath }}" class="card-img-top" alt="{{ product.name }} image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{ product.partNumber }}</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Vendor: {{ product.vendor.name }}</li>
+                        <li class="list-group-item">{{ product.price | currency }} {{ product.unit }}</li>
+                    </ul>
+                    <a routerLink="/product/detail/{{ product.id }}">
+                        <img width="20" height="20" src="assets/details.png" title="Product Details" />
+                    </a>
+                    <a routerLink="/product/edit/{{ product.id }}">
+                        <img width="20" height="20" src="assets/pencil-icon.png" title="Edit Product" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p *ngIf="message" class="message">{{ message }}</p>
+    </div>
+</div>

@@ -32,7 +32,7 @@ export class RequestEditComponent implements OnInit {
         });
       },
       error: (err) => {
-        console.log('Error editing Request: ', err);
+        this.message = err.error.message;
       },
       complete: () => {},
     });
@@ -46,8 +46,7 @@ export class RequestEditComponent implements OnInit {
         this.router.navigateByUrl('/request/list');
       },
       error: (err) => {
-        console.log('Error updating request: ', err);
-        this.message = 'Error updating Request.';
+        this.message = err.error.message;
       },
       complete: () => {},
     });

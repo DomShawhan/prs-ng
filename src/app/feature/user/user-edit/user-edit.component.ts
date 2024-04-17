@@ -28,15 +28,13 @@ export class UserEditComponent implements OnInit {
             this.user = resp;
           },
           error: (err) => {
-            console.log('Get by Id error for id: ' + this.userId, err);
-            this.message = 'Get by Id error for id: ' + this.userId;
+            this.message = err.error.message;
           },
           complete: () => {}
         });
       },
       error: (err) => {
-        console.log('Get by Id error for id: ' + this.userId, err);
-        this.message = 'Get by Id error for id: ' + this.userId;
+        this.message = err.error.message;
       },
       complete: () => {}
     });
@@ -49,7 +47,6 @@ export class UserEditComponent implements OnInit {
         this.router.navigateByUrl('/user/list');
       }, 
       error: (err) => {
-        console.log('Update error for id: ' + this.userId, err);
         this.message = err.error.message;
       },
       complete: () => {}
