@@ -4,27 +4,35 @@ import { Product } from '../../../model/product';
 import { VendorService } from '../../../service/vendor.service';
 import { ProductService } from '../../../service/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BaseComponent } from '../../base/base.component';
+import { SystemService } from '../../../service/system.service';
 
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
   styleUrl: './product-edit.component.css'
 })
-export class ProductEditComponent implements OnInit {
+export class ProductEditComponent extends BaseComponent implements OnInit {
   title: string = 'Product-Edit';
   product: Product = new Product();
   productId: number = 0;
   vendors: Vendor[] = [];
-  message?: string = undefined;
 
   constructor(
     private vendorSvc: VendorService,
     private productSvc: ProductService,
     private router: Router,
+    sysSvc: SystemService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    super(sysSvc);
+  }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
+    super.ngOnInit();
+    if(!this.userIsAdmin) {
+      this.router.navigateByUrl('/product/list');
+    }
     this.route.params.subscribe({
       next: (parms) => {
         this.productId = parms['id'];

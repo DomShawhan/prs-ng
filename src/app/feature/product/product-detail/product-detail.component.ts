@@ -2,26 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../model/product';
 import { ProductService } from '../../../service/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BaseComponent } from '../../base/base.component';
+import { SystemService } from '../../../service/system.service';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent extends BaseComponent implements OnInit {
   title: string = 'Product-Detail';
   product: Product = new Product();
   productId: number = 0;
-  message?: string = undefined;
 
   constructor(
     private productSvc: ProductService,
     private router: Router,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    sysSvc: SystemService
+  ) {
+    super(sysSvc);
+  }
 
-  ngOnInit() {
-    // get the id from the url
+  override ngOnInit() {
+    super.ngOnInit();
     this.route.params.subscribe({
       next: (parms) => {
         this.productId = parms['id'];

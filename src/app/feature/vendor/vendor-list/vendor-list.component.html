@@ -2,7 +2,7 @@
 <div class="container" id="main-content">
     <section class="heading">
         <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
-        <a routerLink="/vendor/create">
+        <a routerLink="/vendor/create" *ngIf="userIsAdmin">
             <img width="20" height="20" src="assets/add-icon.png" title="Add New" />
         </a>
     </section>
@@ -19,10 +19,10 @@
                         <li class="list-group-item">{{ vendor.email }}</li>
                     </ul>
                     <a routerLink="/vendor/detail/{{ vendor.id }}">
-                        <img width="20" height="20" src="assets/details.png" title="Vendor Details" />
+                        <i class="bi bi-card-list fs-4 me-2 icon-dark"></i>
                     </a>
-                    <a routerLink="/vendor/edit/{{ vendor.id }}">
-                        <img width="20" height="20" src="assets/pencil-icon.png" title="Edit Vendor" />
+                    <a *ngIf="userIsAdmin" routerLink="/vendor/edit/{{ vendor.id }}">
+                        <i class="bi bi-pencil-fill fs-4 me-2 icon-dark"></i>
                     </a>
                 </div>
             </div>

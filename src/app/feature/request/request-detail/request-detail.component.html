@@ -70,7 +70,7 @@
                 </tbody>
             </table>
         </main>
-        <span *ngIf="request.status == 'NEW'">
+        <span *ngIf="request.status == 'NEW' && request.user.id == loggedInUser.id">
             <button routerLink="/request/edit/{{ request.id }}" class="btn btn-sm btn-warning"
                 style="margin-right: 10px;">Edit</button>
             <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button>

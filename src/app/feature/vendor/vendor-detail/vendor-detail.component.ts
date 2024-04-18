@@ -2,25 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { Vendor } from '../../../model/vendor';
 import { VendorService } from '../../../service/vendor.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SystemService } from '../../../service/system.service';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-vendor-detail',
   templateUrl: './vendor-detail.component.html',
   styleUrl: './vendor-detail.component.css'
 })
-export class VendorDetailComponent implements OnInit {
+export class VendorDetailComponent extends BaseComponent implements OnInit {
   title: string = 'Vendor-Detail';
   vendor: Vendor = new Vendor();
   vendorId: number = 0;
-  message?: string = undefined;
 
   constructor(
     private vendorSvc: VendorService,
     private router: Router,
-    private route: ActivatedRoute
-  ){}
+    private route: ActivatedRoute,
+    sysSvc: SystemService
+  ){
+    super(sysSvc);
+  }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
+    super.ngOnInit();
     this.route.params.subscribe({
       next: (parms) => {
         this.vendorId = parms['id'];

@@ -1,0 +1,55 @@
+<app-menu></app-menu>
+<div class="container" id="main-content" *ngIf="userIsReviewer">
+    <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
+    <p *ngIf="!request">Loading...</p>
+    <div *ngIf="request">
+        <main class="single">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ request.user.firstname + ' ' + request.user.lastname }}</td>
+                        <td>{{ request.description }}</td>
+                        <td>{{ request.status }}</td>
+                        <td>{{ request.total | currency }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2 class="page-title font-weight-bold font-italic">
+                Line Items
+            </h2>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Vendor</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Line Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let li of lineItems">
+                        <td>{{ li.product.vendor.name }}</td>
+                        <td>{{ li.product.name }}</td>
+                        <td>{{ li.quantity }}</td>
+                        <td>{{ li.product.price | currency }}</td>
+                        <td>{{ li.product.price * li.quantity | currency }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+        <button *ngIf="request.status == 'REVIEW'" (click)="approve()" class="btn btn-sm btn-main me-1">Approve</button>
+        <input [(ngModel)]="reasonForRejection" class="rounded me-1" type="text" placeholder="Reason for Rejection" />
+        <button *ngIf="request.status == 'REVIEW'" (click)="reject()" class="btn btn-sm btn-danger">Reject</button>
+        <p *ngIf="message" class="message">{{ message }}</p>
+    </div>
+</div>
+

@@ -1,20 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../../../service/request.service';
 import { Request } from '../../../model/request';
+import { BaseComponent } from '../../base/base.component';
+import { SystemService } from '../../../service/system.service';
 
 @Component({
   selector: 'app-request-list',
   templateUrl: './request-list.component.html',
   styleUrl: './request-list.component.css'
 })
-export class RequestListComponent {
+export class RequestListComponent extends BaseComponent implements OnInit {
   title: string = "Request-List";
   requests?: Request[] = undefined;
-  message?: string = undefined
 
-  constructor(private requestSvc: RequestService) {}
+  constructor(
+    private requestSvc: RequestService,
+    sysSvc: SystemService
+  ) {
+    super(sysSvc)
+  }
   
-  ngOnInit(): void {
+  override ngOnInit(): void {
+    super.ngOnInit();
     this.requestSvc.getAllRequests().subscribe({
       next: (resp) => {
         this.requests = resp;

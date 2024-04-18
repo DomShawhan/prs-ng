@@ -64,9 +64,9 @@
             </table>
         </main>
         <span>
-            <button routerLink="/user/edit/{{ user.id }}" class="btn btn-sm btn-warning"
+            <button *ngIf="userIsAdmin || userId == loggedInUser.id" routerLink="/user/edit/{{ user.id }}" class="btn btn-sm btn-warning"
                 style="margin-right: 10px;">Edit</button>
-            <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button>
+            <button *ngIf="userIsAdmin" (click)="delete()" class="btn btn-sm btn-danger">Delete</button>
         </span>
         <p *ngIf="message" class="message">{{ message }}</p>
     </div>

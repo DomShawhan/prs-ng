@@ -1,20 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
+import { SystemService } from '../../../service/system.service';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css'
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent extends BaseComponent implements OnInit {
   title: string = "User-List";
   users?: User[] = undefined;
-  message?: string = undefined;
 
-  constructor(private userSvc: UserService) {}
+  constructor(
+    private userSvc: UserService,
+    sysSvc: SystemService
+  ) {
+    super(sysSvc);
+  }
   
-  ngOnInit(): void {
+  override ngOnInit(): void {
+    super.ngOnInit();
     this.userSvc.getAllUsers().subscribe({
       next: (resp) => {
         this.users = resp;
@@ -23,7 +30,7 @@ export class UserListComponent implements OnInit {
         this.message = err.error.message;
       },
       complete: () => {}
-    })
+    });
   }
 
 }

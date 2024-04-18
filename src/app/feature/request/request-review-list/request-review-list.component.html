@@ -1,0 +1,28 @@
+<app-menu></app-menu>
+<div class="container" id="main-content" *ngIf="userIsReviewer">
+    <section class="heading">
+        <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="card col-xl-3 col-lg-4 col-md-6" *ngFor="let request of requests">
+                <div class="card-body">
+                    <h5 class="card-title">{{ request.user.firstname }} {{ request.user.lastname }}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{ request.description }}</h6>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{ request.justification }}</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Status: {{ request.status }}</li>
+                        <li class="list-group-item">Date Needed: {{ request.dateNeeded }}</li>
+                        <li class="list-group-item">Total: {{ request.total | currency }}</li>
+                        <li class="list-group-item">Submitted: {{ request.submittedDate }}</li>
+                    </ul>
+                    <a routerLink="/request/approve/{{ request.id }}">
+                        <i class="bi bi-hand-thumbs-up"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p *ngIf="message" class="message">{{ message }}</p>
+    </div>
+</div>

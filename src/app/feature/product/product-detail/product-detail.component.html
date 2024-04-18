@@ -51,7 +51,7 @@
                 </tbody>
             </table>
         </main>
-        <span>
+        <span *ngIf="userIsAdmin">
             <button routerLink="/product/edit/{{ product.id }}" class="btn btn-sm btn-warning"
                 style="margin-right: 10px;">Edit</button>
             <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button>

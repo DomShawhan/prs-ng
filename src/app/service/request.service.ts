@@ -34,4 +34,16 @@ export class RequestService {
   reviewRequest(request: Request): Observable<Request> {
     return this.http.post(URL + '/review/' + request.id, request) as Observable<Request>;
   }
+
+  getRequestsToReview(userid: number): Observable<Request[]> {
+    return this.http.get(URL + '/reviews/' + userid) as Observable<Request[]>
+  }
+
+  approveRequest(request: Request): Observable<Request> {
+    return this.http.post(URL + '/approve/' + request.id, request) as Observable<Request>;
+  }
+
+  rejectRequest(request: Request, reasonForRejection: string): Observable<Request> {
+    return this.http.post(URL + '/reject/' + request.id, reasonForRejection) as Observable<Request>;
+  }
 }

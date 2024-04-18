@@ -1,32 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Request } from '../../../model/request';
 import { User } from '../../../model/user';
 import { RequestService } from '../../../service/request.service';
 import { UserService } from '../../../service/user.service';
 import { Router } from '@angular/router';
 import { SystemService } from '../../../service/system.service';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-request-create',
   templateUrl: './request-create.component.html',
   styleUrl: './request-create.component.css'
 })
-export class RequestCreateComponent {
+export class RequestCreateComponent extends BaseComponent implements OnInit {
   title: string = "Request-Create";
   request: Request = new Request();
-  message?: string = undefined;
 
   constructor(
     private requestSvc: RequestService,
     private userSvc: UserService,
     private router: Router,
-    private systemSvc: SystemService
-  ){}
+    sysSvc: SystemService
+  ){
+    super(sysSvc);
+  }
   
-  ngOnInit(): void {
-    this.systemSvc.checkLogin();
+  override ngOnInit(): void {
+    super.ngOnInit();
+    if(!this.userIsLoggedIn) {
+      this.router.navigateByUrl('/user/login');
+    }
 
-    this.request.user = this.systemSvc.loggedInUser;
+    this.request.user = this.loggedInUser;
   }
 
   save(): void {

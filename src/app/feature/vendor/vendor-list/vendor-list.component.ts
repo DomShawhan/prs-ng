@@ -1,20 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { VendorService } from '../../../service/vendor.service';
 import { Vendor } from '../../../model/vendor';
+import { BaseComponent } from '../../base/base.component';
+import { SystemService } from '../../../service/system.service';
 
 @Component({
   selector: 'app-vendor-list',
   templateUrl: './vendor-list.component.html',
   styleUrl: './vendor-list.component.css'
 })
-export class VendorListComponent implements OnInit{
+export class VendorListComponent extends BaseComponent implements OnInit{
   title: string = "Vendor-List";
   vendors?: Vendor[] = undefined;
-  message?: string = undefined;
 
-  constructor(private vendorSvc: VendorService) {}
+  constructor(
+    private vendorSvc: VendorService,
+    sysSvc: SystemService
+  ) {
+    super(sysSvc);
+  }
   
-  ngOnInit(): void {
+  override ngOnInit(): void {
+    super.ngOnInit();
     this.vendorSvc.getAllVendors().subscribe({
       next: (resp) => {
         this.vendors = resp;
@@ -23,6 +30,6 @@ export class VendorListComponent implements OnInit{
         this.message = err.error.message;
       },
       complete: () => {}
-    })
+    });
   }
 }

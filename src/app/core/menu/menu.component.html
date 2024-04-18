@@ -12,7 +12,11 @@
             </div>
         </div>
         <div class="navbar-nav ml-auto" >
-            <a *ngIf="loggedInUser" class="nav-link"routerLink="/user/edit/{{ loggedInUser.id }}" title="Edit Logged In user">{{ loggedInUser.firstname }} {{ loggedInUser.lastname }}</a>
+            <a *ngIf="loggedInUser" class="nav-link"routerLink="/user/edit/{{ loggedInUser.id }}" title="Edit Logged In user">
+                {{ loggedInUser.firstname }} {{ loggedInUser.lastname }} 
+                <i *ngIf="loggedInUser.admin" class="bi bi-person-gear ms-1"></i>
+                <i *ngIf="loggedInUser.reviewer" class="bi bi-clipboard ms-1"></i>
+            </a>
             <a class="nav-link"routerLink="/user/login" title="{{ loggedInUser ? 'Logout': 'Login' }}">{{ loggedInUser ? 'Logout': 'Login' }}</a>
         </div>
     </div>

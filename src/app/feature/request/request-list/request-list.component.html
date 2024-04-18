@@ -2,7 +2,7 @@
 <div class="container" id="main-content">
     <section class="heading">
         <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
-        <a routerLink="/request/create">
+        <a routerLink="/request/create" *ngIf="userIsLoggedIn">
             <img width="20" height="20" src="assets/add-icon.png" title="Add New" />
         </a>
     </section>
@@ -21,13 +21,13 @@
                         <li class="list-group-item">Submitted: {{ request.submittedDate }}</li>
                     </ul>
                     <a routerLink="/request/detail/{{ request.id }}">
-                        <img width="20" height="20" src="assets/details.png" title="Request Details" />
+                        <i class="bi bi-card-list fs-4 me-2 icon-dark"></i>
                     </a>
-                    <a *ngIf="request.status == 'NEW'" routerLink="/request/edit/{{ request.id }}">
-                        <img width="20" height="20" src="assets/pencil-icon.png" title="Edit Request" />
+                    <a *ngIf="request.status == 'NEW' && request.user.id == loggedInUser.id" routerLink="/request/edit/{{ request.id }}">
+                        <i class="bi bi-pencil-fill fs-4 me-2 icon-dark"></i>
                     </a>
                     <a routerLink="/request/lines/{{ request.id }}">
-                        <img width="20" height="20" src="assets/lines.png" title="Request Lines" />
+                        <i class="bi bi-list-ul fs-4 icon-dark"></i>
                     </a>
                 </div>
             </div>

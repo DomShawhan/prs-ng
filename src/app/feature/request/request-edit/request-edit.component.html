@@ -1,5 +1,5 @@
 <app-menu></app-menu>
-<div class="container" id="main-content">
+<div class="container" id="main-content" *ngIf="request.status == 'NEW' && request.user.id == loggedInUser.id">
     <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
     <p *ngIf="!request">Loading...</p>
     <div *ngIf="request">
@@ -43,7 +43,7 @@
             </table>
         </main>
         <span>
-            <button (click)="save()" class="btn btn-sm btn-primary">Edit</button>
+            <button (click)="save()" class="btn btn-sm btn-main">Edit</button>
         </span>
         <p *ngIf="message" class="message">{{ message }}</p>
     </div>

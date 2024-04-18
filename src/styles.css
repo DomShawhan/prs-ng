@@ -13,6 +13,7 @@ body {
     color: rgb(200, 107, 24);
     display: inline-block;
 	font-family: Ringbearer, Tahoma, serif;
+	background-color: rgba(185, 162, 122, 0.95);
 }
 
 nav {
@@ -51,12 +52,44 @@ li {
 	padding-bottom: 5px;
 }
 
-.btn-main {
+.btn-main,
+.btn-main:active {
 	background-color: rgb(71, 91, 29);
 	color: rgb(185, 162, 122);
 }
 
-.btn-main:hover {
+.btn-main:hover,
+.btn-main:focus {
 	background-color: rgb(50, 71, 9);
 	color: rgb(185, 162, 122);
+}
+
+.card {
+	background-color: rgba(185, 162, 122, .95);
+}
+
+.list-group-item {
+	color: rgb(128, 92, 65);
+	background-color: rgba(185, 162, 122, 0);
+	border: 0;
+}
+
+.card-body {
+	font-weight: bold;
+	color: rgb(71, 91, 29);
+}
+
+.message {
+	color: red;
+}
+
+.icon-dark {
+	color: rgb(71, 91, 29);
+}
+
+.no-li {
+	padding: 0 5px;
+	margin-right: 5px;
+	background-color: rgb(185, 162, 122);
+	color: black;
 }

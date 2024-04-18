@@ -24,7 +24,7 @@
             </table>
             <h2 class="page-title font-weight-bold font-italic">
                 Line Items
-                <a *ngIf="request.status == 'NEW'" routerLink="/line-item/create/{{ request.id }}">
+                <a *ngIf="request.status == 'NEW' && request.user.id == loggedInUser.id" routerLink="/line-item/create/{{ request.id }}">
                     <img width="20" height="20" src="assets/add-icon.png" title="Add New" />
                 </a>
             </h2>
@@ -47,10 +47,10 @@
                         <td>{{ li.product.price | currency }}</td>
                         <td>{{ li.product.price * li.quantity | currency }}</td>
                         <td>
-                            <a *ngIf="request.status == 'NEW'" routerLink="/line-item/edit/{{ li.id }}">
+                            <a *ngIf="request.status == 'NEW' && request.user.id == loggedInUser.id" routerLink="/line-item/edit/{{ li.id }}">
                                 <img width="20" height="20" src="assets/pencil-icon.png" title="Edit Line Item" />
                             </a>
-                            <a *ngIf="request.status == 'NEW'" (click)="delete(li.id)">
+                            <a *ngIf="request.status == 'NEW' && request.user.id == loggedInUser.id" (click)="delete(li.id)">
                                 <img width="20" height="20" src="assets/delete.jpg" title="Delete Line Item" />
                             </a>
                         </td>
@@ -58,8 +58,8 @@
                 </tbody>
             </table>
         </main>
-        <span *ngIf="lineItems.length == 0">No line items yet. Please create a new one!</span>
-        <button *ngIf="request.status == 'NEW'" (click)="submit()" class="btn btn-sm btn-main">Submit Request For Review</button>
+        <span *ngIf="request.user.id == loggedInUser.id && lineItems.length == 0" class="no-li">No line items yet. Add a new one line item to be able to submit the request!</span>
+        <button *ngIf="request.user.id == loggedInUser.id && request.status == 'NEW' && lineItems.length != 0" (click)="submit()" class="btn btn-sm btn-main">Submit Request For Review</button>
         <p *ngIf="message" class="message">{{ message }}</p>
     </div>
 </div>

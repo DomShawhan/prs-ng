@@ -1,21 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LineitemService } from '../../../service/lineitem.service';
 import { ProductService } from '../../../service/product.service';
 import { RequestService } from '../../../service/request.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LineItem } from '../../../model/line-item';
 import { Product } from '../../../model/product';
+import { BaseComponent } from '../../base/base.component';
+import { SystemService } from '../../../service/system.service';
+import { Request } from '../../../model/request';
 
 @Component({
   selector: 'app-line-item-edit',
   templateUrl: './line-item-edit.component.html',
   styleUrl: './line-item-edit.component.css'
 })
-export class LineItemEditComponent {
+export class LineItemEditComponent extends BaseComponent implements OnInit {
   title: string = 'Line Item Edit';
   lineItemId: number = 0;
   lineItem: LineItem = new LineItem();
-  message?: string = undefined;
+  request: Request = new Request();
   products: Product[] = [];
 
   constructor(
@@ -23,16 +26,29 @@ export class LineItemEditComponent {
     private productSvc: ProductService,
     private requestSvc: RequestService,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router,
+    sysSvc: SystemService
+  ) {
+    super(sysSvc);
+  }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
+    super.ngOnInit();
     this.route.params.subscribe({
       next: (parms) => {
         this.lineItemId = parms['id'];
         this.liSvc.getLineItemById(this.lineItemId).subscribe({
           next: (resp) => {
             this.lineItem = resp;
+            this.requestSvc.getRequestById(this.lineItem.request.id).subscribe({
+              next: (resp) => {
+                this.request = resp;
+              }, 
+              error: (err) => {
+                this.message = err.error.message;
+              },
+              complete: () => {}
+            });
           }, 
           error: (err) => {
             this.message = err.error.message;
@@ -54,6 +70,9 @@ export class LineItemEditComponent {
       },
       complete: () => {}
     });
+    if(!this.userIsLoggedIn || this.request.user.id != this.loggedInUser.id || this.request.status != 'NEW') {
+      this.router.navigateByUrl('/request/list');
+    }
   }
 
   save(): void {

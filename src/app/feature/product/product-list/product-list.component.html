@@ -2,7 +2,7 @@
 <div class="container" id="main-content">
     <section class="heading">
         <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
-        <a routerLink="/product/create">
+        <a routerLink="/product/create" *ngIf="userIsAdmin">
             <img width="20" height="20" src="assets/add-icon.png" title="Add New" />
         </a>
     </section>
@@ -19,10 +19,10 @@
                         <li class="list-group-item">{{ product.price | currency }} {{ product.unit }}</li>
                     </ul>
                     <a routerLink="/product/detail/{{ product.id }}">
-                        <img width="20" height="20" src="assets/details.png" title="Product Details" />
+                        <i class="bi bi-card-list fs-4 me-2 icon-dark"></i>
                     </a>
-                    <a routerLink="/product/edit/{{ product.id }}">
-                        <img width="20" height="20" src="assets/pencil-icon.png" title="Edit Product" />
+                    <a routerLink="/product/edit/{{ product.id }}" *ngIf="userIsAdmin">
+                        <i class="bi bi-pencil-fill fs-4 me-2 icon-dark"></i>
                     </a>
                 </div>
             </div>

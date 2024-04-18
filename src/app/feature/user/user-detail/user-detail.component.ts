@@ -2,25 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../model/user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../service/user.service';
+import { BaseComponent } from '../../base/base.component';
+import { SystemService } from '../../../service/system.service';
 
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.css'
 })
-export class UserDetailComponent implements OnInit {
+export class UserDetailComponent extends BaseComponent implements OnInit {
   title: string = 'User-Detail';
   user: User = new User();
   userId: number = 0;
-  message?: string = undefined;
 
   constructor(
     private userSvc: UserService,
     private router: Router,
+    sysSvc: SystemService,
     private route: ActivatedRoute
-  ){}
+  ){
+    super(sysSvc);
+  }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
+    super.ngOnInit();
     this.route.params.subscribe({
       next: (parms) => {
         this.userId = parms['id'];

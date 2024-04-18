@@ -27,6 +27,9 @@ export class MenuComponent implements OnInit {
     this.menuItems.push(new MenuItem("Vendor", "/vendor/list", "Vendor List"));
     this.menuItems.push(new MenuItem("Product", "/product/list", "Product List"));
     this.menuItems.push(new MenuItem("Request", "/request/list", "Request List"));
+    if(this.systemSvc.checkReviewer()) {
+      this.menuItems.push(new MenuItem("Review", "/request/review", "Request to Review List"));
+    }
   }
 
 }

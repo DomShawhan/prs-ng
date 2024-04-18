@@ -2,26 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { Request } from '../../../model/request';
 import { RequestService } from '../../../service/request.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BaseComponent } from '../../base/base.component';
+import { SystemService } from '../../../service/system.service';
 
 @Component({
   selector: 'app-request-detail',
   templateUrl: './request-detail.component.html',
   styleUrl: './request-detail.component.css'
 })
-export class RequestDetailComponent implements OnInit {
+export class RequestDetailComponent extends BaseComponent implements OnInit {
   title: string = 'Request-Detail';
   request: Request = new Request();
   requestId: number = 0;
-  message?: string = undefined;
 
   constructor(
     private requestSvc: RequestService,
     private router: Router,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    sysSvc: SystemService
+  ) {
+    super(sysSvc);
+  }
 
-  ngOnInit() {
-    // get the id from the url
+  override ngOnInit() {
+    super.ngOnInit();
     this.route.params.subscribe({
       next: (parms) => {
         this.requestId = parms['id'];
