@@ -3,43 +3,43 @@
     <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
     <p *ngIf="!user">Loading...</p>
     <div *ngIf="user">
-        <main class="single">
-            <table class="table table-sm">
+        <main class="detail-content col col-md-12 col-lg-8" >
+            <table class="table table-sm detail-table">
                 <tbody>
                     <tr>
                         <td>Username:</td>
                         <td>
-                            <input [(ngModel)]="user.username" class="rounded" type="text" />
+                            <input [(ngModel)]="user.username" class="rounded detail-box" type="text" />
                         </td>
                     </tr>
                     <tr>
                         <td>Password:</td>
                         <td>
-                            <input [(ngModel)]="user.password" class="rounded" type="password" />
+                            <input [(ngModel)]="user.password" class="rounded detail-box" type="password" />
                         </td>
                     </tr>
                     <tr>
                         <td>First name:</td>
                         <td>
-                            <input [(ngModel)]="user.firstname" class="rounded" type="text" />
+                            <input [(ngModel)]="user.firstname" class="rounded detail-box" type="text" />
                         </td>
                     </tr>
                     <tr>
                         <td>Last name:</td>
                         <td>
-                            <input [(ngModel)]="user.lastname" class="rounded" type="text" />
+                            <input [(ngModel)]="user.lastname" class="rounded detail-box" type="text" />
                         </td>
                     </tr>
                     <tr>
                         <td>Phone:</td>
                         <td>
-                            <input [(ngModel)]="user.phone" class="rounded" type="text" />
+                            <input [(ngModel)]="user.phone" class="rounded detail-box" type="text" />
                         </td>
                     </tr>
                     <tr>
                         <td>Email:</td>
                         <td>
-                            <input [(ngModel)]="user.email" class="rounded" type="email" />
+                            <input [(ngModel)]="user.email" class="rounded detail-box" type="email" />
                         </td>
                     </tr>
                     <tr>

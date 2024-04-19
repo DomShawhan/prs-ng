@@ -4,6 +4,7 @@ import { VendorService } from '../../../service/vendor.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SystemService } from '../../../service/system.service';
 import { BaseComponent } from '../../base/base.component';
+import { VendorSummary } from '../../../model/vendor-summary';
 
 @Component({
   selector: 'app-vendor-detail',
@@ -14,6 +15,7 @@ export class VendorDetailComponent extends BaseComponent implements OnInit {
   title: string = 'Vendor-Detail';
   vendor: Vendor = new Vendor();
   vendorId: number = 0;
+  vendorSummary: VendorSummary = new VendorSummary();
 
   constructor(
     private vendorSvc: VendorService,
@@ -32,6 +34,15 @@ export class VendorDetailComponent extends BaseComponent implements OnInit {
         this.vendorSvc.getVendorById(this.vendorId).subscribe({
           next: (resp) => {
             this.vendor = resp;
+          },
+          error: (err) => {
+            this.message = err.error.message;
+          },
+          complete: () => {}
+        });
+        this.vendorSvc.getVendorSummary(this.vendorId).subscribe({
+          next: (resp) => {
+            this.vendorSummary = resp;
           },
           error: (err) => {
             this.message = err.error.message;

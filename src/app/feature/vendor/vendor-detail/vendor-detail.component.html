@@ -3,68 +3,94 @@
     <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
     <p *ngIf="!vendor">Loading...</p>
     <div *ngIf="vendor">
-        <main class="single">
-            <table class="table table-sm">
+        <main class="detail-content col col-sm-10 col-md-10 col-lg-6">
+            <table class="table table-sm detail-table">
                 <tbody>
                     <tr>
                         <td>Id:</td>
-                        <td>
-                            <input [(ngModel)]="vendor.id" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ vendor.id }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Code:</td>
-                        <td>
-                            <input [(ngModel)]="vendor.code" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ vendor.code }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Name:</td>
-                        <td>
-                            <input [(ngModel)]="vendor.name" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ vendor.name }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Address:</td>
-                        <td>
-                            <input [(ngModel)]="vendor.address" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ vendor.address }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>City:</td>
-                        <td>
-                            <input [(ngModel)]="vendor.city" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ vendor.city }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>State:</td>
-                        <td>
-                            <input [(ngModel)]="vendor.state" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ vendor.state }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Zip:</td>
-                        <td>
-                            <input [(ngModel)]="vendor.zip" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ vendor.zip }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Phone:</td>
-                        <td>
-                            <input [(ngModel)]="vendor.phone" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ vendor.phone }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td>
-                            <input [(ngModel)]="vendor.email" class="rounded" type="email" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ vendor.email }}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="userIsAdmin">
+                        <td>Count of Products:</td>
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ vendorSummary.countOfProducts }}
+                            </span>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </main>
         <span>
-            <button *ngIf="userIsAdmin" routerLink="/vendor/edit/{{ vendor.id }}" class="btn btn-sm btn-warning"
+            <button *ngIf="userIsAdmin" routerLink="/vendor/edit/{{ vendor.id }}" class="btn btn-sm btn-edit"
                 style="margin-right: 10px;">Edit</button>
             <button *ngIf="userIsAdmin" (click)="delete()" class="btn btn-sm btn-danger">Delete</button>
         </span>

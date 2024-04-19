@@ -3,8 +3,8 @@
     <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
     <p *ngIf="!request">Loading...</p>
     <div *ngIf="request">
-        <main class="single">
-            <table class="table table-sm">
+        <main class="detail-content">
+            <table class="table table-sm detail-table">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -22,42 +22,35 @@
                     </tr>
                 </tbody>
             </table>
-            <h2 class="page-title font-weight-bold font-italic">
+        </main>
+        <section class="container mb-1">
+            <h3 class="page-title font-weight-bold font-italic">
                 Line Items
                 <a *ngIf="request.status == 'NEW' && request.user.id == loggedInUser.id" routerLink="/line-item/create/{{ request.id }}">
-                    <img width="20" height="20" src="assets/add-icon.png" title="Add New" />
+                    <i class="bi bi-plus-square-fill"></i>
                 </a>
-            </h2>
-            <table class="table table-sm">
-                <thead>
-                    <tr>
-                        <th>Vendor</th>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Line Total</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let li of lineItems">
-                        <td>{{ li.product.vendor.name }}</td>
-                        <td>{{ li.product.name }}</td>
-                        <td>{{ li.quantity }}</td>
-                        <td>{{ li.product.price | currency }}</td>
-                        <td>{{ li.product.price * li.quantity | currency }}</td>
-                        <td>
-                            <a *ngIf="request.status == 'NEW' && request.user.id == loggedInUser.id" routerLink="/line-item/edit/{{ li.id }}">
-                                <img width="20" height="20" src="assets/pencil-icon.png" title="Edit Line Item" />
-                            </a>
-                            <a *ngIf="request.status == 'NEW' && request.user.id == loggedInUser.id" (click)="delete(li.id)">
-                                <img width="20" height="20" src="assets/delete.jpg" title="Delete Line Item" />
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </main>
+            </h3>
+            <div class="row">
+                <div class="card col-xl-3 col-lg-4 col-md-6" *ngFor="let li of lineItems">
+                    <img src="../../../../assets/productImages/{{ li.product.photoPath }}" class="card-img-top" alt="{{ li.product.name }} image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ li.product.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">{{ li.product.partNumber }}</h6>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Qty: {{ li.quantity }}</li>
+                            <li class="list-group-item">Price: {{ li.product.price | currency }}</li>
+                            <li class="list-group-item">Line Total: {{ li.product.price * li.quantity | currency }}</li>
+                        </ul>
+                        <a *ngIf="request.status == 'NEW' && request.user.id == loggedInUser.id" routerLink="/line-item/edit/{{ li.id }}">
+                            <i class="bi bi-pencil-fill fs-4 me-2 icon-dark"></i>
+                        </a>
+                        <a *ngIf="request.status == 'NEW' && request.user.id == loggedInUser.id" style="cursor: pointer;" (click)="delete(li.id)">
+                            <i class="bi bi-trash-fill"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
         <span *ngIf="request.user.id == loggedInUser.id && lineItems.length == 0" class="no-li">No line items yet. Add a new one line item to be able to submit the request!</span>
         <button *ngIf="request.user.id == loggedInUser.id && request.status == 'NEW' && lineItems.length != 0" (click)="submit()" class="btn btn-sm btn-main">Submit Request For Review</button>
         <p *ngIf="message" class="message">{{ message }}</p>

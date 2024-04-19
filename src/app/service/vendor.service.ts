@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Vendor } from '../model/vendor';
+import { VendorSummary } from '../model/vendor-summary';
 
 const URL: string = 'http://localhost:8080/api/vendors';
 @Injectable({
@@ -29,5 +30,9 @@ export class VendorService {
 
   deleteVendor(id: number): Observable<boolean> {
     return this.http.delete(URL + '/' + id) as Observable<boolean>;
+  }
+
+  getVendorSummary(id: number) : Observable<VendorSummary> {
+    return this.http.get(URL + '/vendorsummary/' + id) as Observable<VendorSummary>;
   }
 }

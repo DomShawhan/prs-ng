@@ -53,7 +53,7 @@ export class VendorEditComponent extends BaseComponent implements OnInit {
     this.vendorSvc.updateVendor(this.vendor).subscribe({
       next: (resp) => {
         this.vendor = resp;
-        this.router.navigateByUrl('/vendor/list');
+        this.router.navigateByUrl('/vendor/detail/' + this.vendor.id);
       }, 
       error: (err) => {
         this.message = err.error.message;

@@ -65,7 +65,7 @@ export class RequestLinesComponent extends BaseComponent implements OnInit {
         if(!resp) {
           this.message = 'An error occured on the delete';
         } else {
-          window.location.reload();
+          this.ngOnInit();
         }
       },
       error: (err) => {

@@ -2,19 +2,19 @@
     <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
     <p *ngIf="!userLogin">Loading...</p>
     <div *ngIf="userLogin">
-        <main class="single">
-            <table class="table table-sm">
+        <main class="detail-content col col-md-12 col-lg-8" >
+            <table class="table table-sm detail-table">
                 <tbody>
                     <tr>
                         <td>Username:</td>
                         <td>
-                            <input [(ngModel)]="userLogin.username" class="rounded" type="text" />
+                            <input [(ngModel)]="userLogin.username" class="rounded detail-box" type="text" />
                         </td>
                     </tr>
                     <tr>
                         <td>Password:</td>
                         <td>
-                            <input [(ngModel)]="userLogin.password" class="rounded" type="password" />
+                            <input [(ngModel)]="userLogin.password" class="rounded detail-box" type="password" />
                         </td>
                     </tr>
                 </tbody>

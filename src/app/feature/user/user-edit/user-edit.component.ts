@@ -54,7 +54,7 @@ export class UserEditComponent extends BaseComponent implements OnInit {
     this.userSvc.updateUser(this.user).subscribe({
       next: (resp) => {
         this.user = resp;
-        this.router.navigateByUrl('/user/list');
+        this.router.navigateByUrl('/user/detail/' + this.user.id);
       }, 
       error: (err) => {
         this.message = err.error.message;

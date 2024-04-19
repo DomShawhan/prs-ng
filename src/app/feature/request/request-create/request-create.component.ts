@@ -38,7 +38,7 @@ export class RequestCreateComponent extends BaseComponent implements OnInit {
     this.requestSvc.createRequest(this.request).subscribe({
       next: (resp) => {
         this.request = resp;
-        this.router.navigateByUrl('/request/list');
+        this.router.navigateByUrl('/request/lines/' + this.request.id);
       },
       error: (err) => {
         this.message = this.message = err.error.message;;

@@ -64,6 +64,18 @@ li {
 	color: rgb(185, 162, 122);
 }
 
+.btn-edit,
+.btn-edit:active {
+	background-color: rgb(210, 117, 34);
+	color: white;
+}
+
+.btn-edit:hover,
+.btn-edit:focus {
+	background-color: rgb(200, 107, 24);
+	color: rgb(185, 162, 122);
+}
+
 .card {
 	background-color: rgba(185, 162, 122, .95);
 }
@@ -92,4 +104,58 @@ li {
 	margin-right: 5px;
 	background-color: rgb(185, 162, 122);
 	color: black;
+}
+
+.detail-content {
+	background-color: rgba(185, 162, 122, .95);
+	border: 3px outset rgb(96, 88, 79);
+	padding-top: 10px;
+}
+
+.detail-table {
+	width: 100%;
+}
+
+.detail-table > tbody > tr > td {
+	border-color: rgb(205, 182, 142);
+	background-color: rgba(185, 162, 122, 0);
+	font-weight: bold;
+	color: rgb(163, 108, 41);
+}
+
+.detail-table > thead > tr > th {
+	border-color: rgb(205, 182, 142);
+	background-color: rgba(185, 162, 122, 0);
+	font-weight: bold;
+	color: rgb(200, 107, 24);
+}
+
+.detail-box {
+	font-weight: normal;
+	display: block;
+	width: 85%;
+	background-color: rgba(205, 182, 142, .85);
+	color: rgb(71, 91, 29);
+	border: 5px ridge rgb(112, 104, 24);
+	border-radius: .5rem;
+	padding-left: 5px;
+	overflow: hidden;
+}
+
+.detail-box:disabled {
+	background-color: rgba(205, 182, 142, .9);
+	color: rgb(91, 111, 49);
+	border: 5px ridge rgb(152, 144, 64);
+	border-radius: .5rem;
+}
+
+.detail-img {
+	width: 50%;
+	align-self: center;
+}
+
+.bi.bi-plus-square-fill {
+	font-weight: bold;
+	font-size: 2rem;
+	color: rgb(71, 91, 29);
 }

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../service/user.service';
 import { BaseComponent } from '../../base/base.component';
 import { SystemService } from '../../../service/system.service';
+import { UserSummary } from '../../../model/user-summary';
 
 @Component({
   selector: 'app-user-detail',
@@ -14,6 +15,7 @@ export class UserDetailComponent extends BaseComponent implements OnInit {
   title: string = 'User-Detail';
   user: User = new User();
   userId: number = 0;
+  userSummary: UserSummary = new UserSummary();
 
   constructor(
     private userSvc: UserService,
@@ -38,6 +40,15 @@ export class UserDetailComponent extends BaseComponent implements OnInit {
           },
           complete: () => {}
         });
+        this.userSvc.getUserSummary(this.userId).subscribe({
+          next: (resp) => {
+            this.userSummary = resp;
+          },
+          error: (err) => {
+            this.message = err.error.message;
+          },
+          complete: () => {}
+        })
       },
       error: (err) => {
         this.message = err.error.message;

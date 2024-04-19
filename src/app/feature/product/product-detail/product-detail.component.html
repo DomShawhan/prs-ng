@@ -3,56 +3,71 @@
     <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
     <p *ngIf="!product">Loading...</p>
     <div *ngIf="product">
-        <main class="single">
-            <table class="table table-sm">
+        <main class="detail-content col col-md-12 col-lg-8 card" >
+            <img src="../../../../assets/productImages/{{ product.photoPath }}" class="detail-img">
+            <table class="table table-sm detail-table card-body">
                 <tbody>
                     <tr>
                         <td>Id: </td>
-                        <td>
-                            <input [(ngModel)]="product.id" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ product.id }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Vendor: </td>
-                        <td>
-                            <input [(ngModel)]="product.vendor.name" class="rounded" type="text" />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ product.vendor.name }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Part Number:</td>
-                        <td>
-                            <input [(ngModel)]="product.partNumber" class="rounded" type="text" />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ product.partNumber }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Name:</td>
-                        <td>
-                            <input [(ngModel)]="product.name" class="rounded" type="text" />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ product.name }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Price:</td>
-                        <td>
-                            <input [(ngModel)]="product.price" class="rounded" type="number" step=".01" />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ product.price | currency }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Unit:</td>
-                        <td>
-                            <input [(ngModel)]="product.unit" class="rounded" type="text" />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ product.unit }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Photo Path:</td>
-                        <td>
-                            <input [(ngModel)]="product.photoPath" class="rounded" type="text" />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ product.photoPath }}
+                            </span>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </main>
         <span *ngIf="userIsAdmin">
-            <button routerLink="/product/edit/{{ product.id }}" class="btn btn-sm btn-warning"
+            <button routerLink="/product/edit/{{ product.id }}" class="btn btn-sm btn-edit"
                 style="margin-right: 10px;">Edit</button>
             <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button>
         </span>

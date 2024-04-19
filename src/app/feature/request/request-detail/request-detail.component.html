@@ -3,75 +3,94 @@
     <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
     <p *ngIf="!request">Loading...</p>
     <div *ngIf="request">
-        <main class="single">
-            <table class="table table-sm">
+        <main class="detail-content col col-md-12 col-lg-8">
+            <table class="table table-sm detail-table">
                 <tbody>
                     <tr>
                         <td>Id:</td>
-                        <td>
-                            <input [(ngModel)]="request.id" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ request.id }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>User:</td>
-                        <td>
-                            <input value="{{ request.user.firstname + ' ' + request.user.lastname }}" class="rounded"
-                                type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ request.user.firstname + ' ' + request.user.lastname }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Description:</td>
-                        <td>
-                            <input [(ngModel)]="request.description" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ request.description }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Justification:</td>
-                        <td>
-                            <input [(ngModel)]="request.justification" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ request.justification }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Date Needed:</td>
-                        <td>
-                            <input [(ngModel)]="request.dateNeeded" class="rounded" type="date" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ request.dateNeeded | date: "MM/dd/YYYY" }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Delivery Mode:</td>
-                        <td>
-                            <input [(ngModel)]="request.deliveryMode" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ request.deliveryMode }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Status:</td>
-                        <td>
-                            <input [(ngModel)]="request.status" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ request.status }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Total:</td>
-                        <td>
-                            <input [(ngModel)]="request.total" class="rounded" type="number" step=".01" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ request.total | currency }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Submitted Date:</td>
-                        <td>
-                            <input [(ngModel)]="request.submittedDate" class="rounded" type="date" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ request.submittedDate | date: "MM/dd/YYYY" }}
+                            </span>
                         </td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="request.status == 'REJECTED'">
                         <td>Reason for Rejection:</td>
-                        <td>
-                            <input [(ngModel)]="request.reasonForRejection" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ request.reasonForRejection }}
+                            </span>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </main>
         <span *ngIf="request.status == 'NEW' && request.user.id == loggedInUser.id">
-            <button routerLink="/request/edit/{{ request.id }}" class="btn btn-sm btn-warning"
+            <button routerLink="/request/edit/{{ request.id }}" class="btn btn-sm btn-edit"
                 style="margin-right: 10px;">Edit</button>
             <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button>
         </span>

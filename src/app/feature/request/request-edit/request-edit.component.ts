@@ -55,7 +55,7 @@ export class RequestEditComponent extends BaseComponent implements OnInit {
     this.requestSvc.updateRequest(this.request).subscribe({
       next: (resp) => {
         this.request = resp;
-        this.router.navigateByUrl('/request/list');
+        this.router.navigateByUrl('/request/lines/' + this.request.id);
       },
       error: (err) => {
         this.message = err.error.message;

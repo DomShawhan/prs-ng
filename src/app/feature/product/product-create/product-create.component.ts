@@ -46,7 +46,7 @@ export class ProductCreateComponent extends BaseComponent implements OnInit {
     this.productSvc.createProduct(this.product).subscribe({
       next: (resp) => {
         this.product = resp;
-        this.router.navigateByUrl('/product/list');
+        this.router.navigateByUrl('/product/detail/'+ this.product.id);
       },
       error: (err) => {
         this.message = err.error.message;

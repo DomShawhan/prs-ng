@@ -3,19 +3,19 @@
     <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
     <p *ngIf="!product">Loading...</p>
     <div *ngIf="product">
-        <main class="single">
-            <table class="table table-sm">
+        <main class="detail-content col col-md-12 col-lg-8" >
+            <table class="table table-sm detail-table">
                 <tbody>
                     <tr>
                         <td>Id: </td>
                         <td>
-                            <input [(ngModel)]="product.id" class="rounded" type="text" disabled />
+                            <input [(ngModel)]="product.id" class="rounded detail-box" type="text" disabled />
                         </td>
                     </tr>
                     <tr>
                         <td>Vendor: </td>
                         <td>
-                            <select [(ngModel)]="product.vendor" class="rounded" [compareWith]="compVendor">
+                            <select [(ngModel)]="product.vendor" class="rounded detail-box" [compareWith]="compVendor">
                                 <option *ngFor="let v of vendors" [ngValue]="v">
                                     {{ v.name }}
                                 </option>
@@ -25,31 +25,31 @@
                     <tr>
                         <td>Part Number:</td>
                         <td>
-                            <input [(ngModel)]="product.partNumber" class="rounded" type="text" />
+                            <input [(ngModel)]="product.partNumber" class="rounded detail-box" type="text" />
                         </td>
                     </tr>
                     <tr>
                         <td>Name:</td>
                         <td>
-                            <input [(ngModel)]="product.name" class="rounded" type="text" />
+                            <input [(ngModel)]="product.name" class="rounded detail-box" type="text" />
                         </td>
                     </tr>
                     <tr>
                         <td>Price:</td>
                         <td>
-                            <input [(ngModel)]="product.price" class="rounded" type="number" step=".01" />
+                            <input [(ngModel)]="product.price" class="rounded detail-box" type="number" step=".01" />
                         </td>
                     </tr>
                     <tr>
                         <td>Unit:</td>
                         <td>
-                            <input [(ngModel)]="product.unit" class="rounded" type="text" />
+                            <input [(ngModel)]="product.unit" class="rounded detail-box" type="text" />
                         </td>
                     </tr>
                     <tr>
                         <td>Photo Path:</td>
                         <td>
-                            <input [(ngModel)]="product.photoPath" class="rounded" type="text" />
+                            <input [(ngModel)]="product.photoPath" class="rounded detail-box" type="text" />
                         </td>
                     </tr>
                 </tbody>

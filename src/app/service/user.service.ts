@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
 import { UserLogin } from '../model/userLogin';
+import { UserSummary } from '../model/user-summary';
 
 const URL: string = 'http://localhost:8080/api/users';
 @Injectable({
@@ -34,5 +35,9 @@ export class UserService {
 
   loginUser(loginDetails: UserLogin): Observable<User> {
     return this.http.post(URL + "/login", loginDetails) as Observable<User>;
+  }
+
+  getUserSummary(id: number): Observable<UserSummary> {
+    return this.http.get(URL + '/usersummary/' + id) as Observable<UserSummary>;
   }
 }

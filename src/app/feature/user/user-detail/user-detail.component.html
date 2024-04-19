@@ -1,70 +1,122 @@
 <app-menu></app-menu>
 <div class="container" id="main-content">
-    <h1 class="page-title font-weight-bold font-italic">{{ title }}</h1>
+    <h1 class="page-title font-weight-bold font-italic">
+        {{ title }} 
+        <i *ngIf="user.admin" class="bi bi-person-gear ms-1"></i>
+        <i *ngIf="user.reviewer" class="bi bi-clipboard ms-1"></i>
+    </h1>
     <p *ngIf="!user">Loading...</p>
-    <div *ngIf="user">
-        <main class="single">
-            <table class="table table-sm">
+    <div *ngIf="user" class="row">
+        <main class="detail-content col col-md-12 col-lg-8" >
+            <table class="table table-sm detail-table">
                 <tbody>
                     <tr>
                         <td>Id:</td>
-                        <td>
-                            <input [(ngModel)]="user.id" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ user.id }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Username:</td>
-                        <td>
-                            <input [(ngModel)]="user.username" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ user.username }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Password:</td>
-                        <td>
-                            <input [(ngModel)]="user.password" class="rounded" type="password" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ user.password }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>First name:</td>
-                        <td>
-                            <input [(ngModel)]="user.firstname" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ user.firstname }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Last name:</td>
-                        <td>
-                            <input [(ngModel)]="user.lastname" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ user.lastname }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Phone:</td>
-                        <td>
-                            <input [(ngModel)]="user.phone" class="rounded" type="text" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ user.phone }}
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td>
-                            <input [(ngModel)]="user.email" class="rounded" type="email" disabled />
+                        <td class="detail-data">
+                            <span class="detail-box">
+                                {{ user.email }}
+                            </span>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Is Reviewer:</td>
+                    <tr *ngIf="userIsAdmin">
                         <td>
-                            <input [(ngModel)]="user.reviewer" class="rounded" type="checkbox" disabled />
+                            <h4 class="page-title font-weight-bold font-italic">User Summary</h4>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr *ngIf="userIsAdmin">
+                        <td># of Approved Requests</td>
+                        <td class="detail-data">
+                            <span class="detail-box fw-bold">
+                                {{ userSummary.countOfAcceptedRequests }}
+                            </span>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Is Admin:</td>
-                        <td>
-                            <input [(ngModel)]="user.admin" class="rounded" type="checkbox" disabled />
+                    <tr *ngIf="userIsAdmin">
+                        <td># of Rejected Requests</td>
+                        <td class="detail-data">
+                            <span class="detail-box fw-bold">
+                                {{ userSummary.countOfRejectedRequests }}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="userIsAdmin">
+                        <td># of Pending Requests</td>
+                        <td class="detail-data">
+                            <span class="detail-box fw-bold">
+                                {{ userSummary.countOfPendingRequests }}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="userIsAdmin">
+                        <td>Approved Total</td>
+                        <td class="detail-data">
+                            <span class="detail-box fw-bold">
+                                {{ userSummary.approvedTotal | currency }}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="userIsAdmin">
+                        <td>Rejected Total</td>
+                        <td class="detail-data">
+                            <span class="detail-box fw-bold">
+                                {{ userSummary.rejectedTotal | currency }}
+                            </span>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </main>
         <span>
-            <button *ngIf="userIsAdmin || userId == loggedInUser.id" routerLink="/user/edit/{{ user.id }}" class="btn btn-sm btn-warning"
+            <button *ngIf="userIsAdmin || userId == loggedInUser.id" routerLink="/user/edit/{{ user.id }}" class="btn btn-sm btn-edit"
                 style="margin-right: 10px;">Edit</button>
             <button *ngIf="userIsAdmin" (click)="delete()" class="btn btn-sm btn-danger">Delete</button>
         </span>
