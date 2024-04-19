@@ -43,6 +43,10 @@ export class LineItemEditComponent extends BaseComponent implements OnInit {
             this.requestSvc.getRequestById(this.lineItem.request.id).subscribe({
               next: (resp) => {
                 this.request = resp;
+                console.log(this.request.user.id, this.loggedInUser.id)
+                if(this.request.user.id != this.loggedInUser.id || this.request.status != 'NEW') {
+                  this.router.navigateByUrl('/request/list');
+                }
               }, 
               error: (err) => {
                 this.parseMessage(err.error.message);
@@ -70,9 +74,6 @@ export class LineItemEditComponent extends BaseComponent implements OnInit {
       },
       complete: () => {}
     });
-    if(!this.userIsLoggedIn || this.request.user.id != this.loggedInUser.id || this.request.status != 'NEW') {
-      this.router.navigateByUrl('/request/list');
-    }
   }
 
   save(): void {

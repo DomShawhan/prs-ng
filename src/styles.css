@@ -39,6 +39,7 @@ li {
 	text-decoration: none;
 	padding: 5px;
 	font-family: Ringbearer, Tahoma, serif;
+	background-color: rgb(71, 91, 29);
 }
 
 .nav-link:hover {
