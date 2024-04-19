@@ -17,11 +17,11 @@ export class VendorEditComponent extends BaseComponent implements OnInit {
   
   constructor(
     private vendorSvc: VendorService,
-    private router: Router,
+    router: Router,
     sysSvc: SystemService,
     private route: ActivatedRoute
   ){
-    super(sysSvc);
+    super(sysSvc, router);
   }
 
   override ngOnInit(): void {
@@ -37,13 +37,13 @@ export class VendorEditComponent extends BaseComponent implements OnInit {
             this.vendor = resp;
           },
           error: (err) => {
-            this.message = err.error.message;
+            this.parseMessage(err.error.message);
           },
           complete: () => {}
         });
       },
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });
@@ -56,7 +56,7 @@ export class VendorEditComponent extends BaseComponent implements OnInit {
         this.router.navigateByUrl('/vendor/detail/' + this.vendor.id);
       }, 
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     })

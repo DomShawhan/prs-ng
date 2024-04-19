@@ -19,10 +19,10 @@ export class RequestCreateComponent extends BaseComponent implements OnInit {
   constructor(
     private requestSvc: RequestService,
     private userSvc: UserService,
-    private router: Router,
+    router: Router,
     sysSvc: SystemService
   ){
-    super(sysSvc);
+    super(sysSvc, router);
   }
   
   override ngOnInit(): void {
@@ -41,7 +41,7 @@ export class RequestCreateComponent extends BaseComponent implements OnInit {
         this.router.navigateByUrl('/request/lines/' + this.request.id);
       },
       error: (err) => {
-        this.message = this.message = err.error.message;;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });

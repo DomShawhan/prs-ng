@@ -26,10 +26,10 @@ export class LineItemCreateComponent extends BaseComponent implements OnInit {
     private productSvc: ProductService,
     private requestSvc: RequestService,
     private route: ActivatedRoute,
-    private router: Router,
+     router: Router,
     sysSvc: SystemService
   ) {
-    super(sysSvc);
+    super(sysSvc, router);
   }
 
   override ngOnInit(): void {
@@ -47,13 +47,13 @@ export class LineItemCreateComponent extends BaseComponent implements OnInit {
             }
           }, 
           error: (err) => {
-            this.message = err.error.message;
+            this.parseMessage(err.error.message);
           },
           complete: () => {}
         });
       }, 
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });
@@ -62,7 +62,7 @@ export class LineItemCreateComponent extends BaseComponent implements OnInit {
         this.products = resp;
       }, 
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });
@@ -76,7 +76,7 @@ export class LineItemCreateComponent extends BaseComponent implements OnInit {
         this.router.navigateByUrl('/request/lines/'+this.requestId);
       }, 
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });

@@ -29,6 +29,7 @@ import { LineItemEditComponent } from './feature/lineItem/line-item-edit/line-it
 import { RequestReviewListComponent } from './feature/request/request-review-list/request-review-list.component';
 import { RequestReviewItemComponent } from './feature/request/request-review-item/request-review-item.component';
 import { BaseComponent } from './feature/base/base.component';
+import { PasswordPipe } from './pipe/password.pipe';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { BaseComponent } from './feature/base/base.component';
     LineItemEditComponent,
     RequestReviewListComponent,
     RequestReviewItemComponent,
-    BaseComponent
+    BaseComponent,
+    PasswordPipe
   ],
   imports: [
     BrowserModule,

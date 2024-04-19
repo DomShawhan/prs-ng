@@ -16,10 +16,10 @@ export class RequestReviewListComponent extends BaseComponent implements OnInit 
 
   constructor(
     private requestSvc: RequestService,
-    private router: Router,
+    router: Router,
     sysSvc: SystemService
   ){
-    super(sysSvc);
+    super(sysSvc, router);
   }
 
   override ngOnInit(): void {
@@ -32,7 +32,7 @@ export class RequestReviewListComponent extends BaseComponent implements OnInit 
         this.requests = resp;
       },
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });

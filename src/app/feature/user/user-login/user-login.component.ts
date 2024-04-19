@@ -24,8 +24,6 @@ export class UserLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.systemSvc.loggedInUser = new User();
-    this.userLogin.username = 'eilluvatar';
-    this.userLogin.password = 'theone';
   }
 
   login(): void {

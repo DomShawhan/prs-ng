@@ -21,11 +21,11 @@ export class ProductEditComponent extends BaseComponent implements OnInit {
   constructor(
     private vendorSvc: VendorService,
     private productSvc: ProductService,
-    private router: Router,
+    router: Router,
     sysSvc: SystemService,
     private route: ActivatedRoute
   ) {
-    super(sysSvc);
+    super(sysSvc, router);
   }
 
   override ngOnInit(): void {
@@ -43,7 +43,7 @@ export class ProductEditComponent extends BaseComponent implements OnInit {
         });
       },
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {},
     });
@@ -52,7 +52,7 @@ export class ProductEditComponent extends BaseComponent implements OnInit {
         this.vendors = resp;
       },
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {},
     });
@@ -66,7 +66,7 @@ export class ProductEditComponent extends BaseComponent implements OnInit {
         this.router.navigateByUrl('/product/detail/' + this.product.id);
       },
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {},
     });

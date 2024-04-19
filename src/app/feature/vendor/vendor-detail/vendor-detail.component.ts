@@ -19,11 +19,11 @@ export class VendorDetailComponent extends BaseComponent implements OnInit {
 
   constructor(
     private vendorSvc: VendorService,
-    private router: Router,
+    router: Router,
     private route: ActivatedRoute,
     sysSvc: SystemService
   ){
-    super(sysSvc);
+    super(sysSvc, router);
   }
 
   override ngOnInit(): void {
@@ -36,7 +36,7 @@ export class VendorDetailComponent extends BaseComponent implements OnInit {
             this.vendor = resp;
           },
           error: (err) => {
-            this.message = err.error.message;
+            this.parseMessage(err.error.message);
           },
           complete: () => {}
         });
@@ -45,13 +45,13 @@ export class VendorDetailComponent extends BaseComponent implements OnInit {
             this.vendorSummary = resp;
           },
           error: (err) => {
-            this.message = err.error.message;
+            this.parseMessage(err.error.message);
           },
           complete: () => {}
         });
       },
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });
@@ -67,7 +67,7 @@ export class VendorDetailComponent extends BaseComponent implements OnInit {
         }
       }, 
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });

@@ -3,6 +3,7 @@ import { RequestService } from '../../../service/request.service';
 import { Request } from '../../../model/request';
 import { BaseComponent } from '../../base/base.component';
 import { SystemService } from '../../../service/system.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-request-list',
@@ -15,9 +16,10 @@ export class RequestListComponent extends BaseComponent implements OnInit {
 
   constructor(
     private requestSvc: RequestService,
-    sysSvc: SystemService
+    sysSvc: SystemService,
+    router: Router
   ) {
-    super(sysSvc)
+    super(sysSvc, router);
   }
   
   override ngOnInit(): void {
@@ -28,7 +30,7 @@ export class RequestListComponent extends BaseComponent implements OnInit {
         this.requests.sort((a, b) => {return +new Date(a.dateNeeded) - +new Date(b.dateNeeded)})
       },
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     })

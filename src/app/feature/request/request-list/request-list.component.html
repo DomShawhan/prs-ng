@@ -15,7 +15,7 @@
                     <h6 class="card-subtitle mb-2 text-body-secondary">{{ request.description }}</h6>
                     <h6 class="card-subtitle mb-2 text-body-secondary">{{ request.justification }}</h6>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Status: {{ request.status }}</li>
+                        <li class="list-group-item {{ request.status.toLowerCase() }}">Status: {{ request.status }}</li>
                         <li class="list-group-item">Date Needed: {{ request.dateNeeded }}</li>
                         <li class="list-group-item">Total: {{ request.total | currency }}</li>
                         <li class="list-group-item">Submitted: {{ request.submittedDate }}</li>

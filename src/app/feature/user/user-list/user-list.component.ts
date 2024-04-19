@@ -3,6 +3,7 @@ import { User } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
 import { SystemService } from '../../../service/system.service';
 import { BaseComponent } from '../../base/base.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -15,9 +16,10 @@ export class UserListComponent extends BaseComponent implements OnInit {
 
   constructor(
     private userSvc: UserService,
-    sysSvc: SystemService
+    sysSvc: SystemService,
+    router: Router
   ) {
-    super(sysSvc);
+    super(sysSvc, router);
   }
   
   override ngOnInit(): void {
@@ -27,7 +29,7 @@ export class UserListComponent extends BaseComponent implements OnInit {
         this.users = resp;
       },
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });

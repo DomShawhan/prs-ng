@@ -17,11 +17,11 @@ export class UserEditComponent extends BaseComponent implements OnInit {
   
   constructor(
     private userSvc: UserService,
-    private router: Router,
+    router: Router,
     sysSvc: SystemService,
     private route: ActivatedRoute
   ){
-    super(sysSvc);
+    super(sysSvc, router);
   }
 
   override ngOnInit(): void {
@@ -37,14 +37,14 @@ export class UserEditComponent extends BaseComponent implements OnInit {
               this.user = resp;
             },
             error: (err) => {
-              this.message = err.error.message;
+              this.parseMessage(err.error.message);
             },
             complete: () => {}
           });
         }
       },
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });
@@ -57,7 +57,7 @@ export class UserEditComponent extends BaseComponent implements OnInit {
         this.router.navigateByUrl('/user/detail/' + this.user.id);
       }, 
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     })

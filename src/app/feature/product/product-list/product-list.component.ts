@@ -3,6 +3,7 @@ import { Product } from '../../../model/product';
 import { ProductService } from '../../../service/product.service';
 import { BaseComponent } from '../../base/base.component';
 import { SystemService } from '../../../service/system.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -15,9 +16,10 @@ export class ProductListComponent extends BaseComponent implements OnInit {
 
   constructor(
     private productSvc: ProductService,
-    sysSvc: SystemService
+    sysSvc: SystemService,
+    router: Router
   ) {
-    super(sysSvc);
+    super(sysSvc, router);
   }
   
   override ngOnInit(): void {
@@ -27,7 +29,7 @@ export class ProductListComponent extends BaseComponent implements OnInit {
         this.products = resp;
       },
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     })

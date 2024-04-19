@@ -19,11 +19,11 @@ export class UserDetailComponent extends BaseComponent implements OnInit {
 
   constructor(
     private userSvc: UserService,
-    private router: Router,
+    router: Router,
     sysSvc: SystemService,
     private route: ActivatedRoute
   ){
-    super(sysSvc);
+    super(sysSvc, router);
   }
 
   override ngOnInit(): void {
@@ -36,7 +36,7 @@ export class UserDetailComponent extends BaseComponent implements OnInit {
             this.user = resp;
           },
           error: (err) => {
-            this.message = err.error.message;
+            this.parseMessage(err.error.message);
           },
           complete: () => {}
         });
@@ -45,13 +45,13 @@ export class UserDetailComponent extends BaseComponent implements OnInit {
             this.userSummary = resp;
           },
           error: (err) => {
-            this.message = err.error.message;
+            this.parseMessage(err.error.message);
           },
           complete: () => {}
         })
       },
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });
@@ -67,7 +67,7 @@ export class UserDetailComponent extends BaseComponent implements OnInit {
         }
       }, 
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });

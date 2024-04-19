@@ -23,10 +23,10 @@ export class RequestReviewItemComponent extends BaseComponent implements OnInit 
     private requestSvc: RequestService,
     sysSvc: SystemService,
     private route: ActivatedRoute,
-    private router: Router,
+    router: Router,
     private liSvc: LineitemService
   ) {
-    super(sysSvc);
+    super(sysSvc, router);
   }
 
   override ngOnInit(): void {
@@ -42,7 +42,7 @@ export class RequestReviewItemComponent extends BaseComponent implements OnInit 
             this.request = resp;
           },
           error: (err) => {
-            this.message = err.error.message;
+            this.parseMessage(err.error.message);
           },
           complete: () => {}
         });
@@ -51,7 +51,7 @@ export class RequestReviewItemComponent extends BaseComponent implements OnInit 
             this.lineItems = resp;
           },
           error: (err) => {
-            this.message = err.error.message;
+            this.parseMessage(err.error.message);
           },
           complete: () => {}
         });
@@ -60,7 +60,7 @@ export class RequestReviewItemComponent extends BaseComponent implements OnInit 
         }
       },
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });
@@ -74,7 +74,7 @@ export class RequestReviewItemComponent extends BaseComponent implements OnInit 
           this.router.navigateByUrl('/request/list');
         },
         error: (err) => {
-          this.message = err.error.message;
+          this.parseMessage(err.error.message);
         },
         complete: () => {}
       });
@@ -90,7 +90,7 @@ export class RequestReviewItemComponent extends BaseComponent implements OnInit 
         this.router.navigateByUrl('/request/list');
       },
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });

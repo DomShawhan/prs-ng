@@ -16,10 +16,10 @@ export class VendorCreateComponent extends BaseComponent implements OnInit {
 
   constructor(
     private vendorSvc: VendorService,
-    private router: Router,
+    router: Router,
     sysSvc: SystemService
   ){
-    super(sysSvc);
+    super(sysSvc, router);
   }
   
   override ngOnInit(): void {
@@ -36,7 +36,7 @@ export class VendorCreateComponent extends BaseComponent implements OnInit {
         this.router.navigateByUrl('/vendor/detail/' + this.vendor.id);
       },
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });

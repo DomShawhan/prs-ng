@@ -3,6 +3,7 @@ import { VendorService } from '../../../service/vendor.service';
 import { Vendor } from '../../../model/vendor';
 import { BaseComponent } from '../../base/base.component';
 import { SystemService } from '../../../service/system.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vendor-list',
@@ -15,9 +16,10 @@ export class VendorListComponent extends BaseComponent implements OnInit{
 
   constructor(
     private vendorSvc: VendorService,
-    sysSvc: SystemService
+    sysSvc: SystemService,
+    router: Router
   ) {
-    super(sysSvc);
+    super(sysSvc, router);
   }
   
   override ngOnInit(): void {
@@ -27,7 +29,7 @@ export class VendorListComponent extends BaseComponent implements OnInit{
         this.vendors = resp;
       },
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });

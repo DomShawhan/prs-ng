@@ -17,9 +17,9 @@ export class UserCreateComponent extends BaseComponent implements OnInit {
   constructor(
     private userSvc: UserService,
     sysSvc: SystemService,
-    private router: Router
+    router: Router
   ){
-    super(sysSvc);
+    super(sysSvc, router);
   }
   
   override ngOnInit(): void {
@@ -36,7 +36,7 @@ export class UserCreateComponent extends BaseComponent implements OnInit {
         this.router.navigateByUrl('/user/detail/' + this.user.id);
       },
       error: (err) => {
-        this.message = err.error.message;
+        this.parseMessage(err.error.message);
       },
       complete: () => {}
     });
